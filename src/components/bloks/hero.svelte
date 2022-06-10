@@ -2,16 +2,30 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	import TextPlugin from 'gsap/dist/TextPlugin';
 
-	gsap.registerPlugin(ScrollTrigger);
+	gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 	let hero: HTMLDivElement;
 	let image: HTMLImageElement;
 	let content: HTMLDivElement;
+	let keyword: HTMLSpanElement;
+	let innerWidth: number;
 
 	let scrollTriggers: gsap.plugins.ScrollTriggerInstance[] = [];
+	let keywordTimeline: gsap.core.Timeline;
 
-	onMount(() => {
+	const onResize = () => {
+		resetAnimations();
+		initAnimations();
+	};
+
+	const resetAnimations = () => {
+		keywordTimeline.clear();
+		scrollTriggers.forEach((st) => st.kill());
+	};
+
+	const initAnimations = () => {
 		const parallaxAnim = gsap.fromTo(
 			image,
 			{
@@ -59,9 +73,51 @@
 				scrub: true,
 			}),
 		);
+		const delay = 1.5;
+		const duration = 0.5;
+		keywordTimeline = gsap.timeline({
+			onComplete: () => {
+				setTimeout(
+					() =>
+						gsap.to(keyword, {
+							text: { value: 'tallerkener' },
+							duration: duration,
+							onComplete: () => keywordTimeline.play(0),
+						}),
+					delay * 1000,
+				);
+			},
+		});
+		const replacementWords = [
+			'krystalglas',
+			'keramikstel',
+			'kaffekopper',
+			'sommerstole',
+			'lagkagefade',
+			'vinkarafler',
+			'havefigurer',
+			'servantesæt',
+			'vintageduge',
+			'loftslamper',
+			'osteskærere',
+			'knagerækker',
+			'retrospejle',
+			'mælkekander',
+			'frugtbakker',
+			'tapetruller',
+		];
+		replacementWords.forEach((word) =>
+			keywordTimeline.to(keyword, { text: { value: word }, duration: duration, delay: delay }),
+		);
+	};
+
+	onMount(() => {
+		initAnimations();
 		return () => scrollTriggers.forEach((st) => st.kill());
 	});
 </script>
+
+<svelte:window bind:innerWidth on:resize={onResize} />
 
 <div bind:this={hero} id="hero" class="hero">
 	<img
@@ -78,8 +134,8 @@
 	<div class="introduction__container">
 		<div class="introduction__grid">
 			<p class="introduction__text">
-				Velkommen til min butik med franske fund. Hos Malmrosa finder du smukke håndplukkede ting
-				fra brocantemarkeder i Sydfrankrig og Belgien.
+				Håndplukkede <span bind:this={keyword} class="introduction__keyword">tallerkener</span> fra Belgien
+				og Sydfrankrig.
 			</p>
 		</div>
 	</div>
@@ -130,7 +186,7 @@
 	.introduction {
 		position: relative;
 		width: 100%;
-		height: 100.1vh;
+		height: 100vh;
 
 		&__container {
 			position: absolute;
@@ -146,7 +202,7 @@
 		}
 
 		&__grid {
-			padding: 2rem;
+			padding: 1rem;
 			max-width: 1280px;
 			display: grid;
 			display: grid;
@@ -163,14 +219,18 @@
 		&__text {
 			color: white;
 			font-family: 'Source Sans Pro';
-			font-size: 1.9rem;
+			font-size: clamp(1.55rem, 3.5vw, 2.8rem);
 			line-height: 1.7;
 			grid-column: span 4 / span 4;
 
 			@media screen and (min-width: 1024px) {
-				grid-column: span 6 / span 6;
-				grid-column-start: 4;
+				grid-column: span 10 / span 10;
+				grid-column-start: 2;
 			}
+		}
+
+		&__keyword {
+			color: rgb(169, 241, 205);
 		}
 	}
 </style>

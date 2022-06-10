@@ -17,13 +17,13 @@
 		width: 0.6em;
 		height: 0.6em;
 		background-color: transparent;
-		margin-block: .5rem;
+		margin-block: 0.5rem;
 	}
 
 	:root::-webkit-scrollbar-track {
 		background-color: rgb(255, 245, 249);
 		border-radius: 100vw;
-		margin-block: .5rem;
+		margin-block: 0.5rem;
 	}
 
 	:root::-webkit-scrollbar-thumb {
