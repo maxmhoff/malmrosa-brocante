@@ -1,5 +1,5 @@
 <script lang="ts">
-	import gsap from 'gsap/dist/gsap.js';
+	import gsap from 'gsap';
 	import Draggable from 'gsap/dist/Draggable';
 	import InertiaPlugin from 'gsap/dist/InertiaPlugin';
 	import { onMount } from 'svelte';
