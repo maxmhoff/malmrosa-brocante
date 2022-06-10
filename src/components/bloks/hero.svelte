@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import gsap, { Power0 } from 'gsap/dist/gsap';
+	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
 	gsap.registerPlugin(ScrollTrigger);
@@ -19,7 +19,7 @@
 			},
 			{
 				yPercent: 50,
-				ease: Power0.easeNone,
+				ease: 'none',
 			},
 		);
 		const fadeContent = gsap.fromTo(
