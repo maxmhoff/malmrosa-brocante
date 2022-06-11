@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { gsap } from 'gsap/dist/gsap';
-	import { Draggable } from 'gsap/dist/Draggable';
-	import { InertiaPlugin } from 'gsap/dist/InertiaPlugin';
+	import { gsap } from 'gsap/dist/gsap.js';
+	import { Draggable } from 'gsap/dist/Draggable.js';
+	import { InertiaPlugin } from 'gsap/dist/InertiaPlugin.js';
 	import { onMount } from 'svelte';
 
 	let innerWidth: number;
