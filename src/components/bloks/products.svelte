@@ -123,7 +123,7 @@
 					'https://images.unsplash.com/photo-1531919948234-852fce12468f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
 				alt: 'furniture',
 			},
-			title: 'andre stole',
+			title: 'Andre stole',
 			price: 300,
 		},
 		{
@@ -179,6 +179,39 @@
 			title: 'Loftslampe uden skærm',
 			price: 599,
 		},
+		{
+			description:
+				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
+			image: {
+				filename:
+					'https://images.unsplash.com/photo-1620256182711-9f4a720a86e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+				alt: 'furniture',
+			},
+			title: 'Sølvtøj',
+			price: 199,
+		},
+		{
+			description:
+				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
+			image: {
+				filename:
+					'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=684&q=80',
+				alt: 'furniture',
+			},
+			title: 'Plakat',
+			price: 25,
+		},
+		{
+			description:
+				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
+			image: {
+				filename:
+					'https://images.unsplash.com/photo-1509281373149-e957c6296406?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=728&q=80',
+				alt: 'furniture',
+			},
+			title: 'Vintage TV',
+			price: 495,
+		},
 	];
 </script>
 
@@ -188,7 +221,7 @@
 	<h2 class="products__title">Sortiment</h2>
 	<div class="products__grid">
 		<p class="products__description">
-			Klar til at dykke ned i mit virtuelle loppemarked? Swipe til siderne for at se flere billeder.
+			Swipe til siderne for at se flere billeder.
 			Hvis du finder noget, du kan lide, kan du ringe eller skrive til mig. Kontakoplysningerne
 			finder du i næste afsnit.
 		</p>
