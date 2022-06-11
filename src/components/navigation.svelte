@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {gsap, Power1} from 'gsap/dist/gsap.js';
-	import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
-	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 
 	gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 	const slideDuration = 1;

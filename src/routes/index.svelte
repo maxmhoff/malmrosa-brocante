@@ -7,6 +7,9 @@
 
 <main>
 	<Navigation />
+	<Hero />
+	<Products />
+	<Contact />
 </main>
 
 <style>
