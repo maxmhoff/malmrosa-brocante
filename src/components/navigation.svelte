@@ -1,5 +1,5 @@
 <script lang="ts">
-	import gsap, { Power1 } from 'gsap/dist/gsap';
+	import {gsap, Power1} from 'gsap/dist/gsap';
 	import ScrollToPlugin from 'gsap/dist/ScrollToPlugin';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
