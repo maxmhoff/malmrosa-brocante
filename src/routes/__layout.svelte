@@ -10,7 +10,7 @@
 		accessToken:
 			import.meta.env.MODE === 'development'
 				? import.meta.env.VITE_STORYBLOK_PREVIEW_TOKEN
-				: VITE_STORYBLOK_PUBLIC_TOKEN,
+				: import.meta.env.VITE_STORYBLOK_PUBLIC_TOKEN,
 		use: [apiPlugin],
 		components: {
 			page: Page,
