@@ -193,7 +193,7 @@
 	}
 
 	:root::-webkit-scrollbar-thumb {
-		background-color: rgb(255, 146, 188);
+		background-color: #d6b4c9;
 		height: 20px;
 		border-radius: 100vw;
 	}
