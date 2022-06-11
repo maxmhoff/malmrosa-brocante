@@ -3,7 +3,9 @@
 
 	export async function load() {
 		const storyblokApi = useStoryblokApi();
-		const { data } = await storyblokApi.get('cdn/stories/home', { version: 'draft' });
+		const { data } = await storyblokApi.get('cdn/stories/home', {
+			version: import.meta.env.MODE === 'development' ? 'draft' : 'published',
+		});
 		return {
 			props: { story: data.story },
 		};

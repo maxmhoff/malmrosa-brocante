@@ -12,7 +12,6 @@
 				? import.meta.env.VITE_STORYBLOK_PREVIEW_TOKEN
 				: import.meta.env.VITE_STORYBLOK_PUBLIC_TOKEN,
 		use: [apiPlugin],
-        bridge: true,
 		components: {
 			page: Page,
 			hero: Hero,
