@@ -3,6 +3,8 @@
 	import { Draggable } from 'gsap/dist/Draggable.js';
 	import { InertiaPlugin } from 'gsap/dist/InertiaPlugin.js';
 	import { onMount } from 'svelte';
+	import { storyblokEditable } from '@storyblok/svelte';
+	export let blok;
 
 	let innerWidth: number;
 	let slider: HTMLUListElement;
@@ -82,153 +84,25 @@
 		updateSizes();
 		initAnimation();
 	});
-
-	const products = [
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1560295888-44704dea4ea7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-				alt: 'furniture',
-			},
-			title: 'Stole',
-			price: 250,
-		},
-		{
-			description: 'something something',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1560088032-d21fe602f4bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-				alt: 'furniture',
-			},
-			title: 'Tingeltangel pr. stk. 10,-',
-			price: 50,
-		},
-		{
-			description: 'Ostestol med meget ost',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1601392740426-907c7b028119?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-				alt: 'furniture',
-			},
-			title: 'Ostestol fra 1800-tallet',
-			price: 120,
-		},
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1531919948234-852fce12468f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-				alt: 'furniture',
-			},
-			title: 'Andre stole',
-			price: 300,
-		},
-		{
-			description: 'something something',
-			image: {
-				filename:
-					'https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=696&q=80',
-				alt: 'furniture',
-			},
-			title: 'Skrivemaskine',
-			price: 1200,
-		},
-		{
-			description: 'Ostestol med meget ost',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1415604934674-561df9abf539?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80',
-				alt: 'furniture',
-			},
-			title: 'Vækkeur',
-			price: 450,
-		},
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1457608135803-4827addc43e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=763&q=80',
-				alt: 'furniture',
-			},
-			title: 'Fransk kamera',
-			price: 99999,
-		},
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1585460379318-bdec0e847457?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-				alt: 'furniture',
-			},
-			title: 'Pomfrida a la Malmrosa',
-			price: 1,
-		},
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1648809895588-c0bd7e06a61c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-				alt: 'furniture',
-			},
-			title: 'Loftslampe uden skærm',
-			price: 599,
-		},
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1620256182711-9f4a720a86e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-				alt: 'furniture',
-			},
-			title: 'Sølvtøj',
-			price: 199,
-		},
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=684&q=80',
-				alt: 'furniture',
-			},
-			title: 'Plakat',
-			price: 25,
-		},
-		{
-			description:
-				'Lancashire chalk and cheese bavarian bergkase. Monterey jack monterey jack paneer cheese strings bavarian bergkase port-salut cheese and biscuits airedale. Red leicester rubber cheese st. agur blue cheese bocconcini the big cheese halloumi everyone loves fromage. Everyone loves emmental st. agur blue cheese camembert de normandie cheddar st. agur blue cheese port-salut.',
-			image: {
-				filename:
-					'https://images.unsplash.com/photo-1509281373149-e957c6296406?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=728&q=80',
-				alt: 'furniture',
-			},
-			title: 'Vintage TV',
-			price: 495,
-		},
-	];
 </script>
 
 <svelte:window bind:innerWidth on:resize={onResize} />
 
-<div id="products" class="products">
-	<h2 class="products__title">Sortiment</h2>
+<div
+	use:storyblokEditable={blok}
+	id="products"
+	class="products"
+	style="background-color: {blok.background_color.color}"
+>
+	<h2 class="products__title">{blok.title}</h2>
 	<div class="products__grid">
 		<p class="products__description">
-			Swipe til siderne for at se flere billeder.
-			Hvis du finder noget, du kan lide, kan du ringe eller skrive til mig. Kontakoplysningerne
-			finder du i næste afsnit.
+			{blok.description}
 		</p>
 	</div>
 	<div class="products__scrollable-area">
 		<ul bind:this={slider} class="products__slider">
-			{#each products as product, i}
+			{#each blok.products as product, i}
 				<li
 					bind:this={cards[i]}
 					class="products__card"

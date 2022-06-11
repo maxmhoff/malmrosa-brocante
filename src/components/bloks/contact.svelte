@@ -2,6 +2,8 @@
 	import { gsap } from 'gsap/dist/gsap.js';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { onMount } from 'svelte';
+	import { storyblokEditable } from '@storyblok/svelte';
+	export let blok;
 
 	gsap.registerPlugin(ScrollTrigger);
 	let contact: HTMLDivElement;
@@ -54,49 +56,60 @@
 
 <svelte:window bind:innerWidth on:resize={onResize} />
 
-<div bind:this={contact} id="contact" class="contact">
+<div
+	use:storyblokEditable={blok}
+	bind:this={contact}
+	id="contact"
+	class="contact"
+	style="background-color: {blok.background_color.color}"
+>
 	<div class="contact__grid">
-		<h2 class="contact__title">Mød Sophie</h2>
-		<figure class="contact__figure">
-			<img
-				bind:this={image}
-				class="contact__image"
-				src="https://images.unsplash.com/photo-1591084728795-1149f32d9866?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-				alt="person"
-			/>
-		</figure>
+		<h2 class="contact__title">{blok.title}</h2>
+		{#if blok.image.filename}
+			<figure class="contact__figure">
+				<img
+					bind:this={image}
+					class="contact__image"
+					src={blok.image.filename}
+					alt={blok.image.alt}
+				/>
+			</figure>
+		{/if}
 		<div class="contact__content">
-			<p class="contact__description">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt saepe, labore quidem,
-				minus officia ea incidunt cum aperiam maiores vel excepturi aspernatur. Natus fugit adipisci
-				eligendi, nam eveniet voluptatem ex. Lorem ipsum dolor sit, amet consectetur adipisicing
-				elit. Dolores est a quam maiores adipisci non officiis ipsam voluptatum consectetur
-				sapiente, excepturi ex reiciendis expedita assumenda, \n facilis atque obcaecati earum
-				deserunt. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio eveniet
-				labore quod, nulla laboriosam tempora ex sint et quas reprehenderit natus expedita voluptas
-				illo perferendis nam mollitia? Repellendus, sunt inventore.
+			<p class="contact__text">
+				{blok.text}
 			</p>
 			<div class="contact__info">
-				<div class="contact__some">
-					<a
-						class="contact__icon-link"
-						href="https://www.instagram.com/malmrosa.brocante/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<img src="/icons/instagram.svg" height="36" width="36" alt="facebook icon" />
-					</a>
-					<a
-						class="contact__icon-link"
-						href="https://www.facebook.com/sophie.malmros.5"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<img src="/icons/facebook.svg" height="36" width="36" alt="facebook icon" />
-					</a>
-				</div>
-				<a href="tel:29807525">tlf: 8888 8888</a>
-				<a href="mailto:malmrosa.brocante@gmail.com">malmrosa.brocante@gmail.com</a>
+				{#if blok.facebook || blok.instagram}
+					<div class="contact__some">
+						{#if blok.facebook}
+							<a
+								class="contact__icon-link"
+								href={blok.facebook}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<img src="/icons/facebook.svg" height="36" width="36" alt="facebook icon" />
+							</a>
+						{/if}
+						{#if blok.instagram}
+							<a
+								class="contact__icon-link"
+								href={blok.instagram}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<img src="/icons/instagram.svg" height="36" width="36" alt="instagram icon" />
+							</a>
+						{/if}
+					</div>
+				{/if}
+				{#if blok.phone}
+					<a href={'tel:' + blok.phone.replace(/\s/g, '')}>tlf: {blok.phone}</a>
+				{/if}
+				{#if blok.email}
+					<a href={blok.email}>{blok.email}</a>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -182,7 +195,7 @@
 			}
 		}
 
-		&__description {
+		&__text {
 			margin-bottom: 3rem;
 		}
 
@@ -208,8 +221,8 @@
 
 		&__icon-link {
 			height: 36px;
-			&:first-child {
-				margin-right: 1rem;
+			&:not(:first-child) {
+				margin-left: 1rem;
 			}
 		}
 	}

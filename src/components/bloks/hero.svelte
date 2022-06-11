@@ -3,8 +3,8 @@
 	import { gsap } from 'gsap/dist/gsap.js';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { TextPlugin } from 'gsap/dist/TextPlugin.js';
-
-	gsap.registerPlugin(ScrollTrigger, TextPlugin);
+	import { storyblokEditable } from '@storyblok/svelte';
+	export let blok;
 
 	let hero: HTMLDivElement;
 	let image: HTMLImageElement;
@@ -88,30 +88,13 @@
 				);
 			},
 		});
-		const replacementWords = [
-			'krystalglas',
-			'keramikstel',
-			'kaffekopper',
-			'sommerstole',
-			'lagkagefade',
-			'vinkarafler',
-			'havefigurer',
-			'servantesæt',
-			'vintageduge',
-			'loftslamper',
-			'osteskærere',
-			'knagerækker',
-			'retrospejle',
-			'mælkekander',
-			'frugtbakker',
-			'tapetruller',
-		];
-		replacementWords.forEach((word) =>
-			keywordTimeline.to(keyword, { text: { value: word }, duration: duration, delay: delay }),
+		blok.keywords.forEach((word) =>
+			keywordTimeline.to(keyword, { text: { value: word.text }, duration: duration, delay: delay }),
 		);
 	};
 
 	onMount(() => {
+		gsap.registerPlugin(ScrollTrigger, TextPlugin);
 		initAnimations();
 		return () => scrollTriggers.forEach((st) => st.kill());
 	});
@@ -119,7 +102,13 @@
 
 <svelte:window bind:innerWidth on:resize={onResize} />
 
-<div bind:this={hero} id="hero" class="hero">
+<div
+	use:storyblokEditable={blok}
+	bind:this={hero}
+	id="hero"
+	class="hero"
+	style="background-image: url({blok.background_image.filename})"
+>
 	<img
 		bind:this={image}
 		class="hero__image"
@@ -131,7 +120,7 @@
 	</div>
 </div>
 <div class="introduction">
-	<div class="introduction__container">
+	<div class="introduction__container" style="background-color: {blok.background_color.color}">
 		<div class="introduction__grid">
 			<p class="introduction__text">
 				Håndplukkede <span bind:this={keyword} class="introduction__keyword">tallerkener</span> fra Belgien
@@ -147,7 +136,6 @@
 		width: 100%;
 		height: 100vh;
 		background-size: cover;
-		background-image: url('https://images.unsplash.com/photo-1570475735025-6cd1cd5c779d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
 		pointer-events: none;
 
 		&__image {
@@ -189,8 +177,8 @@
 		height: 100vh;
 
 		&__container {
-			position: absolute;
 			background-color: #9eaed7;
+			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
