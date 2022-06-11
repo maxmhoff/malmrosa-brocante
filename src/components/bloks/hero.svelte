@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { storyblokEditable } from '@storyblok/svelte';
 	import { gsap } from 'gsap/dist/gsap.js';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { TextPlugin } from 'gsap/dist/TextPlugin.js';
-	import { storyblokEditable } from '@storyblok/svelte';
-	export let blok;
+
+	import type { HeroProps } from 'src/model/props';
+
+	export let blok: HeroProps;
 
 	let hero: HTMLDivElement;
 	let image: HTMLImageElement;

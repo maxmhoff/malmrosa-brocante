@@ -1,9 +1,12 @@
 <script lang="ts">
-	import { gsap } from 'gsap/dist/gsap.js';
-	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { onMount } from 'svelte';
 	import { storyblokEditable } from '@storyblok/svelte';
-	export let blok;
+	import { gsap } from 'gsap/dist/gsap.js';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
+
+	import type { ContactProps } from 'src/model/props';
+
+	export let blok: ContactProps;
 
 	gsap.registerPlugin(ScrollTrigger);
 	let contact: HTMLDivElement;

@@ -1,10 +1,13 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { storyblokEditable } from '@storyblok/svelte';
 	import { gsap } from 'gsap/dist/gsap.js';
 	import { Draggable } from 'gsap/dist/Draggable.js';
 	import { InertiaPlugin } from 'gsap/dist/InertiaPlugin.js';
-	import { onMount } from 'svelte';
-	import { storyblokEditable } from '@storyblok/svelte';
-	export let blok;
+
+	import type { ProductProps } from 'src/model/props';
+
+	export let blok: ProductProps;
 
 	let innerWidth: number;
 	let slider: HTMLUListElement;
