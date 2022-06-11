@@ -74,15 +74,16 @@
 			onThrowUpdate: handleOnThrowUpdate,
 			snap: { x: gsap.utils.snap(cardWidth + margin) },
 		});
-		if (cards.length >= 3) {
-			setActiveCard(1);
-		}
+		setActiveCard(activeCard);
 	};
 
 	onMount(() => {
 		gsap.registerPlugin(Draggable, InertiaPlugin);
 		updateSizes();
 		initAnimation();
+		if (cards.length >= 3) {
+			setActiveCard(1);
+		}
 	});
 </script>
 
