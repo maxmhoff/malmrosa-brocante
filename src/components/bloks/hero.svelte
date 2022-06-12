@@ -110,13 +110,13 @@
 	bind:this={hero}
 	id="hero"
 	class="hero"
-	style="background-image: url({blok.background_image.filename})"
+	style="background-image: url({blok.background_image.filename + '/m/'})"
 >
 	<img
 		bind:this={image}
 		class="hero__image"
-		src="https://images.unsplash.com/photo-1527498326504-ab06d60f3cc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-		alt="hero"
+		src={blok.image.filename + '/m/'}
+		alt={blok.image.alt}
 	/>
 	<div bind:this={content} class="hero__content">
 		<h1 class="hero__title">Malmrosa Brocante</h1>

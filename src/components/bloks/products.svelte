@@ -115,7 +115,7 @@
 					class:products__card--next={i - activeCard > 0}
 					draggable="true"
 				>
-					<img class="products__image" src={product.image.filename} alt={product.image.alt} />
+					<img class="products__image" src={product.image.filename + '/m/0x580'} alt={product.image.alt} />
 					{#if product.title}<p class="products__card-title">{product.title}</p>{/if}
 					{#if product.price}<p class="products__card-price">{product.price},-</p>{/if}
 				</li>

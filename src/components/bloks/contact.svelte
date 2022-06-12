@@ -73,7 +73,7 @@
 				<img
 					bind:this={image}
 					class="contact__image"
-					src={blok.image.filename}
+					src={blok.image.filename + '/m/0x592'}
 					alt={blok.image.alt}
 				/>
 			</figure>
