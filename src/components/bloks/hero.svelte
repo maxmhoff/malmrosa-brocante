@@ -168,6 +168,7 @@
 			text-align: center;
 			font-size: 5rem;
 			font-family: 'Shadows Into Light Two', Georgia, serif;
+			font-display: optional;
 
 			@media screen and (min-width: 768px) {
 				font-size: 8rem;

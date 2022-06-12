@@ -49,7 +49,6 @@
 	onMount(() => {
 		load().then((res) => {
 			props = res;
-			console.log(props);
 		});
 	});
 </script>
