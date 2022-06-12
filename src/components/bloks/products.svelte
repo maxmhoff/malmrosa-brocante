@@ -26,9 +26,10 @@
 	let throttleIsActive = false;
 
 	const onResize = () => {
-		Draggable.get('draggable')?.kill();
+		killAnimations();
 		updateSizes();
 		initDraggable();
+		initHelper();
 	};
 
 	const updateSizes = () => {
@@ -98,6 +99,12 @@
 			toggleActions: 'restart none none none'
 		});
 	};
+	
+	const killAnimations = () => {
+		gsap.set(helper, {clearProps: true});
+		ScrollTrigger.getById('helperScrollTrigger')?.kill();
+		Draggable.get('draggable')?.kill();
+	}
 
 	onMount(() => {
 		gsap.registerPlugin(Draggable, InertiaPlugin, ScrollTrigger);
@@ -108,7 +115,7 @@
 			setActiveCard(1);
 		}
 		return () => {
-			Draggable.get('draggable')?.kill();
+			killAnimations();
 		};
 	});
 </script>
@@ -248,7 +255,7 @@
 			left: calc(50% - $icon-size / 2);
 			bottom: calc(($icon-size + 1rem) * -1);
 
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 500px) {
 				display: none;
 			}
 		}
