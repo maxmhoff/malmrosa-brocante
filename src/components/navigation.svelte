@@ -20,6 +20,21 @@
 
 	export let props;
 
+	let navbar: HTMLDivElement;
+	let currentScrollY: number;
+	let previousScrollY: number;
+	
+	const hideNavTimeline = gsap.timeline({paused: true});
+
+	const handleScroll = () => {
+		if (currentScrollY > previousScrollY) {
+			hideNavTimeline.play();
+		} else {
+			hideNavTimeline.reverse();
+		}
+		previousScrollY = currentScrollY;
+	}
+
 	gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 	const slideDuration = 1;
 
@@ -46,14 +61,24 @@
 		}
 	};
 
+	const initAnimations = () => {
+		hideNavTimeline.to(navbar, {
+			yPercent: -200,
+			duration: .25,
+		});
+	}
+
 	onMount(() => {
+		initAnimations();
 		load().then((res) => {
 			props = res;
 		});
 	});
 </script>
 
-<nav class="navigation">
+<svelte:window on:scroll={handleScroll} bind:scrollY={currentScrollY} />
+
+<nav bind:this={navbar} class="navigation">
 	<div class="navigation__container">
 		{#if props}
 			{#each props.props.links as link}
