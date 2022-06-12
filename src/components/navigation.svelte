@@ -64,7 +64,7 @@
 	const initAnimations = () => {
 		hideNavTimeline.to(navbar, {
 			yPercent: -200,
-			duration: .25,
+			duration: .3
 		});
 	}
 
