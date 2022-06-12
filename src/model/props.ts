@@ -2,6 +2,7 @@ import type { StoryblokColor, StoryblokMedia } from './storyblok';
 
 export type ContactProps = {
 	title: string;
+	text: string;
 	image: StoryblokMedia;
 	facebook: string;
 	instagram: string;
