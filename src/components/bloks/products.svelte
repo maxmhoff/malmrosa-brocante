@@ -4,6 +4,7 @@
 	import { gsap } from 'gsap/dist/gsap.js';
 	import { Draggable } from 'gsap/dist/Draggable.js';
 	import { InertiaPlugin } from 'gsap/dist/InertiaPlugin.js';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 
 	import type { ProductProps } from 'src/model/props';
 
@@ -19,13 +20,16 @@
 
 	cards = [];
 
+	let helper: HTMLImageElement;
+
 	const throttleDuration = 100;
 	let throttleIsActive = false;
 
 	const onResize = () => {
-		Draggable.get('draggable')?.kill();
+		killAnimations();
 		updateSizes();
-		initAnimation();
+		initDraggable();
+		initHelper();
 	};
 
 	const updateSizes = () => {
@@ -55,7 +59,7 @@
 
 	const setActiveCard = (idx: number, duration?: number) => {
 		if (gsap.getTweensOf(slider)) {
-			gsap.getTweensOf(slider).forEach((tween) => tween.kill());
+			gsap.getTweensOf(slider).forEach((tween: gsap.core.Tween) => tween.kill());
 		}
 		gsap.to(slider, {
 			duration: duration ? duration : 0,
@@ -64,7 +68,7 @@
 		});
 	};
 
-	const initAnimation = () => {
+	const initDraggable = () => {
 		containerWidth = (cards.length - 1) * (cardWidth + margin);
 		Draggable.create(slider, {
 			id: 'draggable',
@@ -80,13 +84,39 @@
 		setActiveCard(activeCard);
 	};
 
+	const initHelper = () => {
+		const helperTimeline = gsap
+			.timeline()
+			.to(helper, { x: -50, delay: 1, duration: 0.2 })
+			.to(helper, { x: 50, duration: 0.4 })
+			.to(helper, { x: 0, duration: 0.2 })
+			.to(helper, { opacity: 0 });
+		ScrollTrigger.create({
+			id: 'helperScrollTrigger',
+			animation: helperTimeline,
+			trigger: helper,
+			start: 'bottom bottom',
+			toggleActions: 'restart none none none'
+		});
+	};
+	
+	const killAnimations = () => {
+		gsap.set(helper, {clearProps: true});
+		ScrollTrigger.getById('helperScrollTrigger')?.kill();
+		Draggable.get('draggable')?.kill();
+	}
+
 	onMount(() => {
-		gsap.registerPlugin(Draggable, InertiaPlugin);
+		gsap.registerPlugin(Draggable, InertiaPlugin, ScrollTrigger);
 		updateSizes();
-		initAnimation();
+		initDraggable();
+		initHelper();
 		if (cards.length >= 3) {
 			setActiveCard(1);
 		}
+		return () => {
+			killAnimations();
+		};
 	});
 </script>
 
@@ -115,12 +145,22 @@
 					class:products__card--next={i - activeCard > 0}
 					draggable="true"
 				>
-					<img class="products__image" src={product.image.filename + '/m/0x580'} alt={product.image.alt} />
+					<img
+						class="products__image"
+						src={product.image.filename + '/m/0x580'}
+						alt={product.image.alt}
+					/>
 					{#if product.title}<p class="products__card-title">{product.title}</p>{/if}
 					{#if product.price}<p class="products__card-price">{product.price},-</p>{/if}
 				</li>
 			{/each}
 		</ul>
+		<img
+			bind:this={helper}
+			class="products__slider-helper"
+			src="/icons/swipe-arrow.svg"
+			alt="a finger with arrows to each side, to indicate area is swipeable "
+		/>
 	</div>
 </div>
 
@@ -185,6 +225,10 @@
 			}
 		}
 
+		&__scrollable-area {
+			position: relative;
+		}
+
 		&__slider {
 			display: grid;
 			grid-auto-flow: column;
@@ -200,6 +244,18 @@
 			}
 
 			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
+		&__slider-helper {
+			position: absolute;
+			$icon-size: 50px;
+			height: $icon-size;
+			left: calc(50% - $icon-size / 2);
+			bottom: calc(($icon-size + 1rem) * -1);
+
+			@media screen and (min-width: 500px) {
 				display: none;
 			}
 		}
@@ -265,11 +321,16 @@
 		}
 
 		&__card-title {
+			min-height: 50px;
 			font-family: 'Shadows Into Light Two', Georgia, serif;
 			font-size: 2.3rem;
 			pointer-events: none;
+			white-space: nowrap;
+  			overflow: hidden;
+  			text-overflow: ellipsis;
 
 			@media screen and (min-width: 1024px) {
+				min-height: 58px;
 				font-size: 3rem;
 			}
 		}
