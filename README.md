@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fb0a2352-37ad-411c-99b6-2af5ea82d2f0/deploy-status)](https://app.netlify.com/sites/malmrosa-brocante/deploys)
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
