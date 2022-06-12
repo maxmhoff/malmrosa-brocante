@@ -167,7 +167,7 @@
 			color: white;
 			text-align: center;
 			font-size: 5rem;
-			font-family: 'Shadows Into Light';
+			font-family: 'Shadows Into Light Two', Georgia, serif;
 
 			@media screen and (min-width: 768px) {
 				font-size: 8rem;
@@ -209,7 +209,7 @@
 
 		&__text {
 			color: white;
-			font-family: 'Source Sans Pro';
+			font-family: 'Source Sans Pro', Helvetica, sans-serif;
 			font-size: clamp(1.55rem, 3.5vw, 2.8rem);
 			line-height: 1.7;
 			grid-column: span 4 / span 4;

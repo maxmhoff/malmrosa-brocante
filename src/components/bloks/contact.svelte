@@ -146,7 +146,7 @@
 		}
 
 		&__title {
-			font-family: 'Shadows Into Light';
+			font-family: 'Shadows Into Light Two', Georgia, serif;
 			font-size: 4rem;
 			color: white;
 			grid-column: span 4 / span 4;
@@ -187,7 +187,7 @@
 
 		&__content {
 			color: white;
-			font-family: 'Source Sans Pro';
+			font-family: 'Source Sans Pro', Helvetica, sans-serif;
 			font-size: 1.25rem;
 			line-height: 1.75;
 			grid-column: span 4 / span 4;

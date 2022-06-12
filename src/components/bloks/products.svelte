@@ -144,7 +144,7 @@
 		&__title {
 			text-align: left;
 			width: 100%;
-			font-family: 'Shadows Into Light';
+			font-family: 'Shadows Into Light Two', Georgia, serif;
 			font-size: 4rem;
 			padding-left: 1rem;
 			color: white;
@@ -175,7 +175,7 @@
 
 		&__description {
 			color: white;
-			font-family: 'Source Sans Pro';
+			font-family: 'Source Sans Pro', Helvetica, sans-serif;
 			grid-column: span 4 / span 4;
 			font-size: 1.25rem;
 			line-height: 1.7;
@@ -265,7 +265,7 @@
 		}
 
 		&__card-title {
-			font-family: 'Shadows Into Light';
+			font-family: 'Shadows Into Light Two', Georgia, serif;
 			font-size: 2.3rem;
 			pointer-events: none;
 
