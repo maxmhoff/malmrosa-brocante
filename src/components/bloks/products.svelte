@@ -25,6 +25,8 @@
 	const throttleDuration = 100;
 	let throttleIsActive = false;
 
+	let isDirty = false;
+
 	const onResize = () => {
 		killAnimations();
 		updateSizes();
@@ -46,13 +48,15 @@
 		if (!throttleIsActive) {
 			throttleIsActive = true;
 			setTimeout(() => (throttleIsActive = false), throttleDuration);
+			isDirty = true;
 			return (activeCard = Math.round(Math.abs(this.x) / (cardWidth + margin)));
 		}
 	}
 
 	function handleClick(e) {
 		const idx = cards.indexOf(e.target);
-		if (idx !== -1) {
+		if (idx !== -1 && idx !== activeCard) {
+			isDirty = true;
 			return setActiveCard(idx, 0.7);
 		}
 	}
@@ -89,14 +93,19 @@
 			.timeline()
 			.to(helper, { x: -50, delay: 1, duration: 0.2 })
 			.to(helper, { x: 50, duration: 0.4 })
-			.to(helper, { x: 0, duration: 0.2 })
-			.to(helper, { opacity: 0 });
+			.to(helper, { x: 0, duration: 0.2, onComplete: () => {
+				if (!isDirty) {
+					helperTimeline.play(0);
+				} else {
+					gsap.to(helper, {opacity: 0})
+				}
+			}
+		})
 		ScrollTrigger.create({
 			id: 'helperScrollTrigger',
 			animation: helperTimeline,
 			trigger: helper,
 			start: 'bottom bottom',
-			toggleActions: 'restart none none none'
 		});
 	};
 	
