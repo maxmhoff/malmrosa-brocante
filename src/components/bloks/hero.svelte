@@ -80,14 +80,21 @@
 		const duration = 0.5;
 		keywordTimeline = gsap.timeline({
 			onComplete: () => {
-				gsap.to(keyword, { text: {value: blok.keywords[0].text }, duration: duration, delay: delay});
+				gsap.to(keyword, {
+					text: { value: blok.keywords[0].text },
+					duration: duration,
+					delay: delay,
+				});
 				setTimeout(() => keywordTimeline.restart(), (duration + delay) * 1000);
-				
 			},
 		});
 		blok.keywords.forEach((word, i) => {
 			if (i) {
-				keywordTimeline.to(keyword, { text: { value: word.text }, duration: duration, delay: delay });
+				keywordTimeline.to(keyword, {
+					text: { value: word.text },
+					duration: duration,
+					delay: delay,
+				});
 			}
 		});
 	};
@@ -122,8 +129,9 @@
 	<div class="introduction__container" style="background-color: {blok.background_color.color}">
 		<div class="introduction__grid">
 			<p class="introduction__text">
-				Håndplukkede <span bind:this={keyword} class="introduction__keyword">{blok.keywords[0].text}</span> fra Belgien
-				og Sydfrankrig.
+				Håndplukkede <span bind:this={keyword} class="introduction__keyword"
+					>{blok.keywords[0].text}</span
+				> fra Belgien og Sydfrankrig.
 			</p>
 		</div>
 	</div>

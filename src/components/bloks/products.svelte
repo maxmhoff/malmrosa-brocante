@@ -93,14 +93,17 @@
 			.timeline()
 			.to(helper, { x: -50, delay: 1, duration: 0.2 })
 			.to(helper, { x: 50, duration: 0.4 })
-			.to(helper, { x: 0, duration: 0.2, onComplete: () => {
-				if (!isDirty) {
-					helperTimeline.play(0);
-				} else {
-					gsap.to(helper, {opacity: 0})
-				}
-			}
-		})
+			.to(helper, {
+				x: 0,
+				duration: 0.2,
+				onComplete: () => {
+					if (!isDirty) {
+						helperTimeline.play(0);
+					} else {
+						gsap.to(helper, { opacity: 0 });
+					}
+				},
+			});
 		ScrollTrigger.create({
 			id: 'helperScrollTrigger',
 			animation: helperTimeline,
@@ -108,12 +111,12 @@
 			start: 'bottom bottom',
 		});
 	};
-	
+
 	const killAnimations = () => {
-		gsap.set(helper, {clearProps: true});
+		gsap.set(helper, { clearProps: true });
 		ScrollTrigger.getById('helperScrollTrigger')?.kill();
 		Draggable.get('draggable')?.kill();
-	}
+	};
 
 	onMount(() => {
 		gsap.registerPlugin(Draggable, InertiaPlugin, ScrollTrigger);
@@ -335,8 +338,8 @@
 			font-size: 2.3rem;
 			pointer-events: none;
 			white-space: nowrap;
-  			overflow: hidden;
-  			text-overflow: ellipsis;
+			overflow: hidden;
+			text-overflow: ellipsis;
 
 			@media screen and (min-width: 1024px) {
 				min-height: 58px;

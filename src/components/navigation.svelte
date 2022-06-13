@@ -23,8 +23,8 @@
 	let navbar: HTMLDivElement;
 	let currentScrollY: number;
 	let previousScrollY: number;
-	
-	const hideNavTimeline = gsap.timeline({paused: true});
+
+	const hideNavTimeline = gsap.timeline({ paused: true });
 
 	const handleScroll = () => {
 		if (currentScrollY > previousScrollY) {
@@ -33,7 +33,7 @@
 			hideNavTimeline.reverse();
 		}
 		previousScrollY = currentScrollY;
-	}
+	};
 
 	gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 	const slideDuration = 1;
@@ -64,9 +64,9 @@
 	const initAnimations = () => {
 		hideNavTimeline.to(navbar, {
 			yPercent: -200,
-			duration: .3
+			duration: 0.3,
 		});
-	}
+	};
 
 	onMount(() => {
 		initAnimations();
