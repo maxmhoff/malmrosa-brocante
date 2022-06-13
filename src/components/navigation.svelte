@@ -18,7 +18,7 @@
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { onMount } from 'svelte';
 
-	export let props;
+	let props;
 
 	let navbar: HTMLDivElement;
 	let currentScrollY: number;
