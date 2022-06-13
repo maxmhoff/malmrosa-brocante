@@ -1,26 +1,14 @@
-<script context="module">
-	import { useStoryblokApi } from '@storyblok/svelte';
-
-	export async function load() {
-		const storyblokApi = useStoryblokApi();
-		const { data } = await storyblokApi.get('cdn/stories/navigation', {
-			version: import.meta.env.MODE === 'development' ? 'draft' : 'published',
-		});
-		return {
-			props: data.story.content,
-		};
-	}
-</script>
-
 <script lang="ts">
 	import { gsap, Power1 } from 'gsap/dist/gsap.js';
 	import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { onMount } from 'svelte';
+	
+	import type { NavigationProps } from 'src/model/props';
 
-	let props;
+	export let links: NavigationProps["links"];
 
-	let navbar: HTMLDivElement;
+	let navbar: HTMLElement;
 	let currentScrollY: number;
 	let previousScrollY: number;
 
@@ -70,9 +58,7 @@
 
 	onMount(() => {
 		initAnimations();
-		load().then((res) => {
-			props = res;
-		});
+		console.log(links);
 	});
 </script>
 
@@ -80,8 +66,8 @@
 
 <nav bind:this={navbar} class="navigation">
 	<div class="navigation__container">
-		{#if props}
-			{#each props.props.links as link}
+		{#if links}
+			{#each links as link}
 				<button on:click={() => handleClick(link.anchor_id)} class="navigation__button"
 					>{link.label}</button
 				>
