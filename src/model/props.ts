@@ -20,6 +20,13 @@ export type HeroProps = {
 	background_color: StoryblokColor;
 };
 
+export type NavigationProps = {
+	links: {
+		label: string;
+		anchor_id: string;
+	}[];
+}
+
 export type ProductProps = {
 	title: string;
 	description: string;

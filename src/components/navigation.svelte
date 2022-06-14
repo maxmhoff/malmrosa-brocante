@@ -1,30 +1,18 @@
-<script context="module">
-	import { useStoryblokApi } from '@storyblok/svelte';
-
-	export async function load() {
-		const storyblokApi = useStoryblokApi();
-		const { data } = await storyblokApi.get('cdn/stories/navigation', {
-			version: import.meta.env.MODE === 'development' ? 'draft' : 'published',
-		});
-		return {
-			props: data.story.content,
-		};
-	}
-</script>
-
 <script lang="ts">
 	import { gsap, Power1 } from 'gsap/dist/gsap.js';
 	import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { onMount } from 'svelte';
+	
+	import type { NavigationProps } from 'src/model/props';
 
-	export let props;
+	export let links: NavigationProps["links"];
 
-	let navbar: HTMLDivElement;
+	let navbar: HTMLElement;
 	let currentScrollY: number;
 	let previousScrollY: number;
-	
-	const hideNavTimeline = gsap.timeline({paused: true});
+
+	const hideNavTimeline = gsap.timeline({ paused: true });
 
 	const handleScroll = () => {
 		if (currentScrollY > previousScrollY) {
@@ -33,7 +21,7 @@
 			hideNavTimeline.reverse();
 		}
 		previousScrollY = currentScrollY;
-	}
+	};
 
 	gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 	const slideDuration = 1;
@@ -63,16 +51,14 @@
 
 	const initAnimations = () => {
 		hideNavTimeline.to(navbar, {
-			yPercent: -200,
-			duration: .3
+			y: -80,
+			opacity: 0,
+			duration: 0.3,
 		});
-	}
+	};
 
 	onMount(() => {
 		initAnimations();
-		load().then((res) => {
-			props = res;
-		});
 	});
 </script>
 
@@ -80,8 +66,8 @@
 
 <nav bind:this={navbar} class="navigation">
 	<div class="navigation__container">
-		{#if props}
-			{#each props.props.links as link}
+		{#if links}
+			{#each links as link}
 				<button on:click={() => handleClick(link.anchor_id)} class="navigation__button"
 					>{link.label}</button
 				>

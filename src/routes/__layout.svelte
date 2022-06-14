@@ -1,5 +1,5 @@
 <script context="module">
-	import { storyblokInit, apiPlugin } from '@storyblok/svelte';
+	import { storyblokInit, apiPlugin, useStoryblokApi } from '@storyblok/svelte';
 	import Page from '../components/page.svelte';
 	import Hero from '../components/bloks/hero.svelte';
 	import Products from '../components/bloks/products.svelte';
@@ -19,10 +19,26 @@
 			contact: Contact,
 		},
 	});
+
+	export async function load() {
+		const storyblokApi = useStoryblokApi();
+		const { data } = await storyblokApi.get('cdn/stories/navigation', {
+			version: import.meta.env.MODE === 'development' ? 'draft' : 'published',
+		});
+		return {
+			props: { navLinks: data.story.content.links },
+		};
+	}
+</script>
+
+<script>
+	export let navLinks;
 </script>
 
 <main>
-	<Navigation />
+	{#if navLinks}
+		<Navigation links={navLinks} />
+	{/if}
 	<slot />
 </main>
 
