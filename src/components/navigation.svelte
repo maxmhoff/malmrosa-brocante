@@ -58,7 +58,6 @@
 
 	onMount(() => {
 		initAnimations();
-		console.log(links);
 	});
 </script>
 
