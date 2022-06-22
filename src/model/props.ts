@@ -25,7 +25,7 @@ export type NavigationProps = {
 		label: string;
 		anchor_id: string;
 	}[];
-}
+};
 
 export type ProductProps = {
 	title: string;

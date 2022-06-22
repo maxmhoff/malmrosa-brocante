@@ -19,12 +19,10 @@
 	let keywordTimeline: gsap.core.Timeline;
 
 	const onResize = () => {
-		resetAnimations();
-		initAnimations();
+		scrollTriggers.forEach((st) => st.refresh());
 	};
 
-	const resetAnimations = () => {
-		keywordTimeline.clear();
+	const killScrollTriggers = () => {
 		scrollTriggers.forEach((st) => st.kill());
 	};
 
@@ -102,7 +100,7 @@
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger, TextPlugin);
 		initAnimations();
-		return () => scrollTriggers.forEach((st) => st.kill());
+		return () => killScrollTriggers();
 	});
 </script>
 

@@ -141,11 +141,13 @@
 	style="background-color: {blok.background_color.color}"
 >
 	<h2 class="products__title">{blok.title}</h2>
-	<div class="products__grid">
-		<p class="products__description">
-			{blok.description}
-		</p>
-	</div>
+	{#if blok.description}
+		<div class="products__grid">
+			<p class="products__description">
+				{blok.description}
+			</p>
+		</div>
+	{/if}
 	<div class="products__scrollable-area">
 		<ul bind:this={slider} class="products__slider">
 			{#each blok.products as product, i}
@@ -203,6 +205,7 @@
 
 			@media screen and (min-width: 1024px) {
 				padding: 0;
+				padding-bottom: 3rem;
 				text-align: center;
 				font-size: 6rem;
 			}
@@ -221,7 +224,7 @@
 				column-gap: 1rem;
 				row-gap: 3rem;
 				max-width: 1280px;
-				padding: 3rem 1rem;
+				padding: 0 1rem 3rem;
 			}
 		}
 
