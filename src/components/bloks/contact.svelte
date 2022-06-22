@@ -108,10 +108,10 @@
 					</div>
 				{/if}
 				{#if blok.phone}
-					<a href={'tel:' + blok.phone.replace(/\s/g, '')}>tlf: {blok.phone}</a>
+					<a href={`tel:${blok.phone.replace(/\s/g, '')}`}>tlf: {blok.phone}</a>
 				{/if}
 				{#if blok.email}
-					<a href={blok.email}>{blok.email}</a>
+					<a href={`mailto:${blok.email}`}>{blok.email}</a>
 				{/if}
 			</div>
 		</div>
