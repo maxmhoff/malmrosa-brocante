@@ -3,10 +3,10 @@
 	import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger.js';
 	import { onMount } from 'svelte';
-	
+
 	import type { NavigationProps } from 'src/model/props';
 
-	export let links: NavigationProps["links"];
+	export let links: NavigationProps['links'];
 
 	let navbar: HTMLElement;
 	let currentScrollY: number;

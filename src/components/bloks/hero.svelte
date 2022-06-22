@@ -19,7 +19,7 @@
 	let keywordTimeline: gsap.core.Timeline;
 
 	const onResize = () => {
-		scrollTriggers.forEach(st => st.refresh());
+		scrollTriggers.forEach((st) => st.refresh());
 	};
 
 	const killScrollTriggers = () => {
