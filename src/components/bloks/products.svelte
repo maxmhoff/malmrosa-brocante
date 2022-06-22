@@ -201,10 +201,11 @@
 			font-family: 'Shadows Into Light Two', Georgia, serif;
 			font-size: 4rem;
 			padding-left: 1rem;
+			padding-bottom: 2rem;
 			color: white;
 
 			@media screen and (min-width: 1024px) {
-				padding: 0;
+				padding-left: 0;
 				padding-bottom: 3rem;
 				text-align: center;
 				font-size: 6rem;
@@ -215,7 +216,7 @@
 			display: grid;
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 			row-gap: 2rem;
-			padding: 2rem 1rem;
+			padding: 0 1rem 2rem;
 
 			@media screen and (min-width: 1024px) {
 				grid-template-columns: repeat(12, minmax(0, 1fr));
