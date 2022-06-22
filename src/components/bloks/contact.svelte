@@ -41,7 +41,7 @@
 			trigger: contact,
 			animation: animation,
 			start: 'top bottom',
-			end: 'top top',
+			end: '+=' + 800,
 			scrub: true,
 		});
 	};
@@ -121,6 +121,7 @@
 <style lang="scss">
 	.contact {
 		width: 100%;
+		min-height: 600px;
 		padding: 4rem 0;
 		background-color: #dd8585;
 
