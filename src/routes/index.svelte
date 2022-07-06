@@ -12,14 +12,15 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { useStoryblokBridge, StoryblokComponent } from '@storyblok/svelte';
+	import type { StoryblokStory } from '../model/storyblok';
 
-	export let story;
+	export let story: StoryblokStory;
 
 	onMount(() => {
-		useStoryblokBridge(story.id, (newStory) => (story = newStory));
+		useStoryblokBridge(story.id, (newStory: StoryblokStory) => (story = newStory));
 	});
 </script>
 
