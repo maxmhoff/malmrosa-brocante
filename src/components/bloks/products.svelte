@@ -61,6 +61,16 @@
 		}
 	}
 
+	// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+	const shuffleProducts = () => {
+		const products = blok.products;
+		for (let i = products.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[products[i], products[j]] = [products[j], products[i]];
+		}
+		blok.products = products;
+	};
+
 	const setActiveCard = (idx: number, duration?: number) => {
 		if (gsap.getTweensOf(slider)) {
 			gsap.getTweensOf(slider).forEach((tween: gsap.core.Tween) => tween.kill());
@@ -120,6 +130,7 @@
 
 	onMount(() => {
 		gsap.registerPlugin(Draggable, InertiaPlugin, ScrollTrigger);
+		shuffleProducts();
 		updateSizes();
 		initDraggable();
 		initHelper();
