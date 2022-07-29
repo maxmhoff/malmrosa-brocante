@@ -120,7 +120,7 @@
 		alt={blok.image.alt}
 	/>
 	<div bind:this={content} class="hero__content">
-		<h1 class="hero__title">Malmrosa Brocante</h1>
+		<h1 class="hero__title">Malmrosabrocante</h1>
 	</div>
 </div>
 <div class="introduction">
